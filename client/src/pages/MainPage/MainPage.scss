@@ -15,11 +15,11 @@
       textarea {
         border: none;
         outline: none;
-
         height: auto;
         padding: 10px;
         resize: vertical;
         width: 100%;
+        border-bottom: 2px solid #32bfbf;
       }
     }
     input[type='button'] {

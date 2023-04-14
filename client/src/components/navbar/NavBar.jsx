@@ -20,7 +20,7 @@ const NavBar = () => {
         <a href="/" className="brand-logo">
           Logo
         </a>
-        <span>{email}</span>
+        <span className="emailUser">{email}</span>
 
         <span style={styleNavMobile} onClick={handleLogout}>
           Выход
