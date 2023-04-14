@@ -11,8 +11,8 @@ const Registaration = () => {
   const [password, setPassword] = useState('')
   const [eye, setEye] = useState(false)
   const [clickView, setClickView] = useState(false)
-  const { login } = useContext(contextApp)
 
+  const { login, selStatusloader } = useContext(contextApp)
   const reset = () => {
     setEmail('')
     setPassword('')
@@ -20,7 +20,7 @@ const Registaration = () => {
   }
   const registarationHadler = async (e) => {
     e.preventDefault()
-
+    selStatusloader(true)
     try {
       await postRequest(`/api/auth/${clickView ? 'registaration' : 'login'}`, {
         email,
@@ -32,10 +32,12 @@ const Registaration = () => {
         }
         login(res.token, res.userId, res.email)
         toast.success('Авторизация проша успешно!')
+        selStatusloader(false)
         window.location.reload()
       })
     } catch (error) {
       console.log(error)
+      selStatusloader(false)
       toast.error('Что-то пошло не так!')
     }
   }

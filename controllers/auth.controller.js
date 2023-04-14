@@ -2,6 +2,7 @@ const User = require('../models/Users')
 const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
 const jsonwebtoken = require('jsonwebtoken')
+
 const registaration = async (req, res) => {
   try {
     const errors = validationResult(req)

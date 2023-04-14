@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import './MainPage.scss'
+import NoData from '../../components/noData/NoData'
 import {
   FaWindowClose,
   FaRegCheckCircle,
@@ -13,16 +14,17 @@ import { postRequest, deleteRequest, putRequest } from '../../base/api-request'
 const MainPage = () => {
   const [text, setText] = useState('')
   const [todoArray, setTodoArray] = useState([])
-  const { userId } = useContext(contextApp)
+  const { userId, selStatusloader } = useContext(contextApp)
 
   const reset = () => {
     setText('')
   }
-  console.log(todoArray)
+
   const addTask = async (e) => {
     if (!text) {
       return
     }
+    selStatusloader(true)
     try {
       await postRequest(`/api/todo/add`, {
         userId,
@@ -30,52 +32,67 @@ const MainPage = () => {
       }).then((res) => {
         reset()
         getTodo()
+        selStatusloader(false)
         toast.success('Задача добавлена!')
       })
     } catch (error) {
       console.log(error)
+      selStatusloader(false)
       toast.error('Что-то пошло не так!')
     }
   }
   const getTodo = (e) => {
+    selStatusloader(true)
     try {
       postRequest('/api/todo/get', {
         userId,
       }).then((res) => {
         setTodoArray(res)
+        selStatusloader(false)
       })
     } catch (error) {
       console.log(error)
+      selStatusloader(false)
     }
   }
   useEffect(() => getTodo(), [])
   const deleteTodo = async (id) => {
+    selStatusloader(true)
     try {
       await deleteRequest(`/api/todo/delete/${id}`).then((res) => {
         toast.success('Задача удалена!')
         getTodo()
+        selStatusloader(false)
       })
     } catch (error) {
       console.log(error)
+      selStatusloader(false)
     }
   }
   const putTodoCompleted = async (id) => {
+    selStatusloader(true)
     try {
       await putRequest(`/api/todo/completed/${id}`).then((res) => {
         toast.success('Задача изменена!')
         getTodo()
+        selStatusloader(false)
       })
     } catch (error) {
       console.log(error)
+
+      selStatusloader(false)
     }
   }
   const putTodoImportant = async (id) => {
+    selStatusloader(true)
     try {
       await putRequest(`/api/todo/important/${id}`).then((res) => {
         toast.success('Задача изменена!')
         getTodo()
+        selStatusloader(false)
       })
     } catch (error) {
+      selStatusloader(false)
       console.log(error)
     }
   }
@@ -107,7 +124,7 @@ const MainPage = () => {
         </div>
 
         <ul>
-          {todoArray.length > 0 &&
+          {todoArray.length > 0 ? (
             todoArray.map((item, i) => {
               return (
                 <li key={item._id}>
@@ -128,7 +145,10 @@ const MainPage = () => {
                   </div>
                 </li>
               )
-            })}
+            })
+          ) : (
+            <NoData />
+          )}
         </ul>
       </div>
     </div>
