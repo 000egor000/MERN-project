@@ -1,0 +1,90 @@
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+  .content {
+    margin: 10px 0;
+    label {
+      display: flex;
+      flex-direction: column;
+      margin: 0 20px;
+      span {
+        color: rgb(167, 161, 153);
+      }
+      textarea {
+        border: none;
+        outline: none;
+
+        height: auto;
+        padding: 10px;
+        resize: vertical;
+        width: 100%;
+      }
+    }
+    input[type='button'] {
+      background-color: red;
+      margin-top: 20px;
+      padding: 10px;
+      border: none;
+      color: #fff;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+
+        position: relative;
+        .first {
+          width: 90%;
+          border-left: 2px solid #32bfbf;
+          height: fit-content;
+          padding: 0 10px;
+
+          span {
+            word-wrap: break-word;
+            padding: 5px;
+            &:first-child {
+              font-weight: 700;
+              color: #32bfbf;
+            }
+          }
+        }
+
+        .status {
+          text-decoration: line-through;
+        }
+        .important {
+          color: red;
+          font-size: 24px;
+        }
+
+        .second {
+          width: 10%;
+          span {
+            cursor: pointer;
+            padding: 10px;
+            &:hover {
+              border-bottom: 1px solid red;
+            }
+          }
+        }
+      }
+    }
+    .activeTask {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      span {
+        font-weight: 700;
+        font-size: 32px;
+        margin: 10px;
+        color: #107171;
+      }
+    }
+  }
+}

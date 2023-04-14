@@ -1,2 +1,0 @@
-# MERN-project
-MERN-project

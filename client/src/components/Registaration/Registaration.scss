@@ -1,0 +1,71 @@
+.registaration {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 100px;
+  h2,
+  form {
+    text-align: center;
+  }
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .groupInput {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+    input {
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px;
+      width: 300px;
+      outline: none;
+      cursor: pointer;
+      border-bottom: 2px solid rgb(50, 191, 191);
+      &:hover {
+        font-weight: 700;
+      }
+    }
+    .eyeHelp {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      span {
+        top: 35%;
+        right: 25px;
+        position: absolute;
+        svg {
+          cursor: pointer;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+    input[type='submit'],
+    input[type='button'] {
+      background-color: red;
+      color: #fff;
+      border: none;
+      margin-top: 20px;
+      width: 150px;
+      &:hover {
+        transform: scale(1.1);
+        font-weight: 700;
+      }
+    }
+    input[type='button'] {
+      background-color: rgb(149, 147, 147);
+    }
+  }
+}
