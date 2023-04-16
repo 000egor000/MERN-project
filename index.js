@@ -9,7 +9,7 @@ app.use('/api/todo', require('./routes/todo.route.js'))
 async function start() {
   try {
     await mongoose.connect(
-      'mongodb+srv://admin:admin@cluster0.go9srqq.mongodb.net/?retryWrites=true&w=majority'
+      'mongodb+srv://admin:admin@cluster0.go9srqq.mongodb.net/MERN_TODO?retryWrites=true&w=majority'
     )
     app.listen(PORT, () => console.log(`Cервер работает на порту ${PORT}`))
   } catch (error) {
