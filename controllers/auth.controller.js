@@ -39,10 +39,11 @@ const login = async (req, res) => {
     const { email, password } = req.body
 
     const isUsed = await User.findOne({ email })
-    const isMatch = await bcrypt.compare(password, isUsed.password)
+
     if (!isUsed) {
       return res.status(300).json({ message: 'Данного email нет в базе!' })
     }
+    const isMatch = bcrypt.compare(password, isUsed.password)
     if (!isMatch) {
       return res.status(300).json({ message: 'Пароли не совпадают' })
     }
